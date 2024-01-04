@@ -30,5 +30,6 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
           SOURCE: "public/"
           REMOTE_HOST: "137.175.53.140"
+          REMOTE_PORT: 22 -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa
           REMOTE_USER: "root"
           TARGET: "/var/www/html"
