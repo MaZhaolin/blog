@@ -24,16 +24,11 @@ jobs:
           npm install hexo-cli -g
           hexo generate
 
-      - name: Add SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_ed25519.pub
-          chmod 600 ~/.ssh/id_ed25519.pub
-          echo "137.175.53.140 ${{ secrets.DEPLOY_KEY }}" >> ~/.ssh/known_hosts
-          cat ~/.ssh/known_hosts
-
-      - name: Deploy to server
-        run: |
-          rsync -avz --delete public/ root@137.175.53.140:/var/www/html
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@v2.1.5
         env:
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+          SOURCE: "public/"
+          REMOTE_HOST: "137.175.53.140"
+          REMOTE_USER: "root"
+          TARGET: "/var/www/html"
