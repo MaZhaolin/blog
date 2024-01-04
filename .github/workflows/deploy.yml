@@ -18,11 +18,9 @@ jobs:
         with:
           node-version: 14
 
-      - name: Install and Build
+      - name: check
         run: |
-          npm install
-          npm install hexo-cli -g
-          hexo generate
+          echo ${{ secrets.DEPLOY_KEY }}
 
         # 上传打包资源
       - name: Deploy
@@ -33,4 +31,4 @@ jobs:
           SOURCE: "dist/"
           REMOTE_HOST: 137.175.53.140
           REMOTE_USER: root
-          TARGET: /home/note # 服务器目标路径
+          TARGET: /var/www/html
