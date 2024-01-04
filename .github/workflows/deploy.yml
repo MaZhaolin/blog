@@ -30,6 +30,7 @@ jobs:
           echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_ed25519.pub
           chmod 600 ~/.ssh/id_ed25519.pub
           ssh-keyscan 137.175.53.140 >> ~/.ssh/known_hosts
+          cat ~/.ssh/known_hosts
 
       - name: Deploy to server
         run: |
