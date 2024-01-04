@@ -24,6 +24,13 @@ jobs:
           npm install hexo-cli -g
           hexo generate
 
+      - name: Add SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan 137.175.53.140 >> ~/.ssh/known_hosts
+
       - name: Deploy to server
         run: |
           rsync -avz --delete public/ root@137.175.53.140:/var/www/html
