@@ -33,3 +33,4 @@ jobs:
           REMOTE_PORT: 22 -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa
           REMOTE_USER: "root"
           TARGET: "/var/www/html"
+          SCRIPT_BEFORE: ls
